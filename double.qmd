@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Double"
 format: live-html
 toc: true
 ---
@@ -19,14 +19,16 @@ toc: true
 ::: {.grid}
 
 ::: {.g-col-6}
-This column takes 1/3 of the page
+
+This column takes 1/2 of the page
+
 ```{pyodide}
 #| autorun: true
 #| edit: true
 #| output: false
 #| warning: false
 #| startover: false
-#| envir:	"example"
+#| envir:	"example-01"
 #| define:
 #|   - mvsjData
 import micropip as mp
@@ -48,10 +50,15 @@ mvsjData = builder.get_state()
 :::
 
 ::: {.g-col-6}
-This column takes 2/3 of the page
+
+This column takes 1/2 of the page
+
+
 ```{ojs}
 //| echo: false
+//| envir:	"example-01"
 molstar = require("molstar@4.16.0/build/viewer/molstar.js")
+
 viewerContainer = html`<div id="molstar-viewer" style="width: 100%; height: 400px;position: relative"></div>`
 
 MolstarViewer =  {
@@ -75,7 +82,83 @@ MolstarViewer =  {
 
 ```{ojs}
 //| output: false
+//| envir:	"example-01"
 MolstarViewer.loadMvsData(mvsjData,"mvsj", {replaceExisting: true});
+```
+
+:::
+
+:::
+
+
+
+
+# Amazing thing 2
+
+::: {.grid}
+
+::: {.g-col-6}
+
+This column takes 1/2 of the page
+
+```{pyodide}
+#| autorun: true
+#| edit: true
+#| output: false
+#| warning: false
+#| startover: false
+#| envir:	"example-02"
+#| define:
+#|   - mvsjData
+import micropip as mp
+await mp.install("molviewspec")
+from molviewspec import create_builder;
+builder = create_builder()
+structure = (builder
+    .download(url="https://www.ebi.ac.uk/pdbe/entry-files/download/1cbs_updated.cif")
+    .parse(format="mmcif")
+    .model_structure()
+    .component()
+    .representation()
+    .color(color="blue")
+)
+
+mvsjData = builder.get_state()
+```
+
+:::
+
+::: {.g-col-6}
+
+This column takes 1/2 of the page
+
+
+```{ojs}
+//| echo: false
+viewerContainer2 = html`<div id="molstar-viewer" style="width: 100%; height: 400px;position: relative"></div>`
+
+MolstarViewer2 =  {
+  // Create the viewer after the container is available in the DOM
+  const viewer = molstar.Viewer.create(viewerContainer2, {
+    layoutIsExpanded: false,
+    layoutShowControls: false,
+    layoutShowRemoteState: false,
+    layoutShowSequence: true,
+    layoutShowLog: false,
+    layoutShowLeftPanel: true,
+    layoutShowStructureTools: true,
+    viewportShowExpand: true,
+    viewportShowSelectionMode: false,
+    viewportShowAnimation: true,
+    enableMonomerColoring: true
+  });
+  return viewer;
+}
+```
+
+```{ojs}
+//| output: false
+MolstarViewer2.loadMvsData(mvsjData,"mvsj", {replaceExisting: true});
 ```
 
 :::
