@@ -19,8 +19,10 @@ pyodide:
 ```{pyodide}
 #| autorun: true
 #| edit: true
-#| output: true
+#| output: false
 #| warning: false
+#| startover: false
+#| envir:	"example"
 #| define:
 #|   - mvsjData
 import micropip as mp
@@ -61,10 +63,9 @@ MolstarViewer =  {
   });
   return viewer;
 }
-viewerContainer
 ```
 
 ```{ojs}
-//| echo: false
+//| output: false
 MolstarViewer.loadMvsData(mvsjData,"mvsj", {replaceExisting: true});
 ```
