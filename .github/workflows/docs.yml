@@ -24,6 +24,10 @@ jobs:
       - name: Setup pages
         id: pages
         uses: actions/configure-pages@v4
+      - name: Install Dependencies
+        id: deps
+        run: |
+          python3 -m pip install jupyter
       - name: Build Docs
         run: quarto render
       - name: Upload artifact
