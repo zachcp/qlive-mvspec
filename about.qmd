@@ -6,6 +6,7 @@ pyodide:
     - pydantic
 ---
 
+
 <style>
 .molstar-viewer {
     display: flex;
@@ -16,6 +17,10 @@ pyodide:
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/molstar@latest/build/viewer/molstar.css" />
 
 
+::: {.grid}
+
+::: {.g-col-6}
+This column takes 1/3 of the page
 ```{pyodide}
 #| autorun: true
 #| edit: true
@@ -41,6 +46,10 @@ structure = (builder
 mvsjData = builder.get_state()
 ```
 
+:::
+
+::: {.g-col-6}
+This column takes 2/3 of the page
 ```{ojs}
 //| echo: false
 molstar = require("molstar@4.16.0/build/viewer/molstar.js")
@@ -69,3 +78,7 @@ MolstarViewer =  {
 //| output: false
 MolstarViewer.loadMvsData(mvsjData,"mvsj", {replaceExisting: true});
 ```
+
+:::
+
+:::

@@ -10,7 +10,7 @@ website:
       - about.qmd
 
 format:
-  html:
+  live-html:
     grid:
       sidebar-width: "150px"
       margin-width: "150px"
